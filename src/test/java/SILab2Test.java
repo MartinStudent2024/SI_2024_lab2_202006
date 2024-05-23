@@ -40,6 +40,10 @@ class SILab2Test {
         exception3 = assertThrows(RuntimeException.class, () -> SILab2.checkCart(list3, payment));
         assertTrue(exception3.getMessage().contains(NO_BARCODE));
         // No barcode!
+
+        List<Item> list5 = List.of(new Item("Milkshake", "5555555555", 185, 10));
+        assertFalse(SILab2.checkCart(list5, 100));
+        // Payment not full
     }
 
     @Test
@@ -72,6 +76,10 @@ class SILab2Test {
         assertTrue(exception3.getMessage().contains(NO_BARCODE));
         // No barcode!
 
+        List<Item> list5 = List.of(new Item("Milkshake", "5555555555", 185, 10));
+        assertFalse(SILab2.checkCart(list5, 100));
+        // Payment not full
+
         List<Item> list4 = List.of(
                 new Item("PowerBar", "0124356789", 350, 3), // begin 0
                 new Item(null, "5252525252", 100, 10), // unknown name
@@ -79,10 +87,6 @@ class SILab2Test {
         );
         assertTrue(SILab2.checkCart(list4, 10000));
         // All conditions met, payment full.
-
-        List<Item> list5 = List.of(new Item("Milkshake", "5555555555", 185, 10));
-        assertFalse(SILab2.checkCart(list5, 100));
-        // Payment not full
 
     }
 }
